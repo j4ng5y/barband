@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option go_package = "github.com/j4ng5y/barband/pkg/server/buffs";
+
+package barband.set;
+
+import "common.proto";
+
+service SetService {
+  rpc CreateSet (CreateSetRequest) returns (Set) {};
+  rpc ReadSet (ReadSetRequest) returns (Set) {};
+  rpc UpdateSet (UpdateSetRequest) returns (Set) {};
+  rpc DeleteSet (DeleteSetRequest) returns (common.Empty) {};
+}
+
+message Set {
+  string setlist_id = 1;
+  string id = 2;
+  string name = 3;
+}
+
+message CreateSetRequest {
+  string setlist_id = 1;
+  string name = 2;
+}
+
+message ReadSetRequest {
+  string id = 1;
+}
+
+message UpdateSetRequest {
+  string id = 1;
+  string name = 2;
+}
+
+message DeleteSetRequest {
+  string id = 1;
+}

@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option go_package = "github.com/j4ng5y/barband/pkg/server/buffs";
+
+package barband.band;
+
+import "common.proto";
+
+service BandService {
+  rpc CreateBand (CreateBandRequest) returns (Band) {};
+  rpc ReadBand (ReadBandRequest) returns (Band) {};
+  rpc UpdateBand (UpdateBandRequest) returns (Band) {};
+  rpc DeleteBand (DeleteBandRequest) returns (common.Empty) {};
+}
+
+message Band {
+  string id = 1;
+  string name = 2;
+}
+
+message CreateBandRequest {
+  string name = 1;
+}
+
+message ReadBandRequest {
+  string id = 1;
+}
+
+message UpdateBandRequest {
+  string id = 1;
+  string name = 2;
+}
+
+message DeleteBandRequest {
+  string id = 1;
+}

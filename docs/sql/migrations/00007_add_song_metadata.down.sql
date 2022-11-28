@@ -1,0 +1,18 @@
+ALTER TABLE songs
+    DROP COLUMN IF EXISTS title,
+    DROP COLUMN IF EXISTS genre,
+    DROP COLUMN IF EXISTS subgenre,
+    DROP COLUMN IF EXISTS primary_artist,
+    DROP COLUMN IF EXISTS featured_artists,
+    DROP COLUMN IF EXISTS composer,
+    DROP COLUMN IF EXISTS publisher,
+    DROP COLUMN IF EXISTS producers,
+    DROP COLUMN IF EXISTS additional_contributors,
+    DROP COLUMN IF EXISTS explicit_content,
+    DROP COLUMN IF EXISTS lyrics_language,
+    DROP COLUMN IF EXISTS lyrics_publisher,
+    DROP COLUMN IF EXISTS composition_owner,
+    DROP COLUMN IF EXISTS year_of_composition,
+    DROP COLUMN IF EXISTS master_recording_owner,
+    DROP COLUMN IF EXISTS year_of_recording,
+    DROP COLUMN IF EXISTS release_language;

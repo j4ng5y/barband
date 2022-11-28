@@ -1,0 +1,86 @@
+@startuml
+database barband {
+	map bands {
+		id => UUID
+		name => VARCHAR(255)
+		created_at => TIMESTAMP
+		updated_at => TIMESTAMP
+		deleted_at => TIMESTAMP
+	}
+	map band_members {
+		band_id => UUID
+		id => UUID
+		prefix => VARCHAR(12)
+		first_name => VARCHAR(60)
+		middle_name => VARCHAR(60)
+		last_name => VARCHAR(60)
+		suffix => VARCHAR(12)
+		nick_name => VARCHAR(60)
+		phone_number => INTEGER
+		created_at => TIMESTAMP
+		updated_at => TIMESTAMP
+		deleted_at => TIMESTAMP
+	}
+	map set_lists {
+		band_id => UUID
+		id => UUID
+		name => VARCHAR(60)
+		created_at => TIMESTAMP
+		updated_at => TIMESTAMP
+		deleted_at => TIMESTAMP
+	}
+	map sets {
+		set_list_id => UUID
+		id => UUID
+		name => VARCHAR(60)
+		created_at => TIMESTAMP
+		updated_at => TIMESTAMP
+		deleted_at => TIMESTAMP
+	}
+	map songs {
+		set_id => UUID
+		id => UUID
+		title => VARCHAR(60)
+		genre => VARCHAR(60)
+		subgenre => VARCHAR(60)
+		primary_artist => VARCHAR(60)
+		featured_artists => VARCHAR(60)
+		composer => VARCHAR(60)
+		publisher => VARCHAR(60)
+		producers => VARCHAR(60)
+		additional_contributors => VARCHAR(60)
+		explicit_content => BOOLEAN
+		lyrics_language => VARCHAR(60)
+		lyrics_publisher => VARCHAR(60)
+		composition_owner => VARCHAR(60)
+		year_of_composition => INTEGER
+		master_recording_owner => VARCHAR(60)
+		year_of_recording => INTEGER
+		release_language => VARCHAR(60)
+		created_at => TIMESTAMP
+		updated_at => TIMESTAMP
+		deleted_at => TIMESTAMP
+	}
+
+	map lyrics {
+		song_id => UUID
+		id => UUID
+		part => VARCHAR(60)
+		lyrics => TEXT
+	}
+
+	map tabs {
+		song_id => UUID
+		id => UUID
+		part => VARCHAR(60)
+		tabs => TEXT
+	}
+
+	bands::id --> band_members::band_id
+	bands::id --> set_lists::band_id
+	set_lists::id --> sets::set_list_id
+	sets::id --> songs::set_id
+	songs::id --> lyrics::song_id
+	songs::id --> tabs::song_id
+}
+@enduml

@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option go_package = "github.com/j4ng5y/barband/pkg/server/buffs";
+
+package barband.common;
+
+message Empty {}

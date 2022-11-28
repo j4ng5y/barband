@@ -1,0 +1,123 @@
+syntax = "proto3";
+
+option go_package = "github.com/j4ng5y/barband/pkg/server/buffs";
+
+package barband.song;
+
+import "common.proto";
+
+service SongService {
+  rpc CreateSong (CreateSongRequest) returns (Song) {};
+  rpc ReadSong (ReadSongRequest) returns (Song) {};
+  rpc UpdateSong (UpdateSongRequest) returns (Song) {};
+  rpc DeleteSong (DeleteSongRequest) returns (common.Empty) {};
+  rpc AddLyrics (AddLyricsRequest) returns (Lyric) {};
+  rpc AddTabs (AddTabsRequest) returns (Tab) {};
+}
+
+message Song {
+  string set_id = 1;
+  string id = 2;
+  oneof NameOrTitle {
+    string name = 3 [deprecated = true];
+    string title = 4;
+  }
+  string genre = 5;
+  string subgenre = 6;
+  string primary_artist = 7;
+  string featured_artists = 8;
+  string composer = 9;
+  string publisher = 10;
+  string producers = 11;
+  string additional_contributors = 12;
+  bool explicit_content = 13;
+  string lyrics_language = 14;
+  string lyrics_publisher = 15;
+  string composition_owner = 16;
+  int32 year_of_composition = 17;
+  string master_recording_owner = 18;
+  int32 year_of_recording = 19;
+  string release_language = 20;
+}
+
+message Lyric {
+  string song_id = 1;
+  string id = 2;
+  string part = 3;
+  string lyrics = 4;
+}
+
+message Tab {
+  string song_id = 1;
+  string id = 2;
+  string part = 3;
+  string tabs = 4;
+}
+
+message CreateSongRequest {
+  string set_id = 1;
+  oneof NameOrTitle {
+    string name = 3 [deprecated = true];
+    string title = 4;
+  }
+  string genre = 5;
+  string subgenre = 6;
+  string primary_artist = 7;
+  string featured_artists = 8;
+  string composer = 9;
+  string publisher = 10;
+  string producers = 11;
+  string additional_contributors = 12;
+  bool explicit_content = 13;
+  string lyrics_language = 14;
+  string lyrics_publisher = 15;
+  string composition_owner = 16;
+  int32 year_of_composition = 17;
+  string master_recording_owner = 18;
+  int32 year_of_recording = 19;
+  string release_language = 20;
+}
+
+message ReadSongRequest {
+  string id = 1;
+}
+
+message UpdateSongRequest {
+  string id = 2;
+  oneof NameOrTitle {
+    string name = 3 [deprecated = true];
+    string title = 4;
+  }
+  string genre = 5;
+  string subgenre = 6;
+  string primary_artist = 7;
+  string featured_artists = 8;
+  string composer = 9;
+  string publisher = 10;
+  string producers = 11;
+  string additional_contributors = 12;
+  bool explicit_content = 13;
+  string lyrics_language = 14;
+  string lyrics_publisher = 15;
+  string composition_owner = 16;
+  int32 year_of_composition = 17;
+  string master_recording_owner = 18;
+  int32 year_of_recording = 19;
+  string release_language = 20;
+}
+
+message DeleteSongRequest {
+  string id = 1;
+}
+
+message AddLyricsRequest {
+  string song_id = 1;
+  string part = 2;
+  string lyrics = 3;
+}
+
+message AddTabsRequest {
+  string song_id = 1;
+  string part = 2;
+  string tabs = 3;
+}

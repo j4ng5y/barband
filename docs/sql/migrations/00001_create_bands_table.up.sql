@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS bands (
+   id uuid NOT NULL PRIMARY KEY,
+   name VARCHAR(255) NOT NULL
+);

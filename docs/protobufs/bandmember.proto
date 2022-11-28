@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+option go_package = "github.com/j4ng5y/barband/pkg/server/buffs";
+
+package barband.bandmember;
+
+import "common.proto";
+
+service BandMemberService {
+  rpc CreateBandMember (CreateBandMemberRequest) returns (BandMember) {};
+  rpc ReadBandMember (ReadBandMemberRequest) returns (BandMember) {};
+  rpc UpdateBandMember (UpdateBandMemberRequest) returns (BandMember) {};
+  rpc DeleteBandMember (DeleteBandMemberRequest) returns (common.Empty) {};
+}
+
+message BandMember {
+  string band_id = 1;
+  string id = 2;
+  string prefix = 3;
+  string first_name = 4;
+  string middle_name = 5;
+  string last_name = 6;
+  string suffix = 7;
+  string nick_name = 8;
+  int32 phone_number = 9;
+}
+
+message CreateBandMemberRequest {
+  string band_id = 1;
+  string prefix = 2;
+  string first_name = 3;
+  string middle_name = 4;
+  string last_name = 5;
+  string suffix = 6;
+  string nick_name = 7;
+  int32 phone_number = 8;
+}
+
+message ReadBandMemberRequest {
+  string id = 1;
+}
+
+message UpdateBandMemberRequest {
+  string id = 1;
+  string prefix = 2;
+  string first_name = 3;
+  string middle_name = 4;
+  string last_name = 5;
+  string suffix = 6;
+  string nick_name = 7;
+  int32 phone_number = 8;
+}
+
+message DeleteBandMemberRequest {
+  string id = 1;
+}

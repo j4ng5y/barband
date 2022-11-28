@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_PASSWORD: barband
+      POSTGRES_USER: barband
+      POSTGRES_DB: barband
+    ports:
+      - 5432:5432
+  server:
+    build:
+      dockerfile: Containerfile
+      context: .
+    depends_on:
+      - db
+    command:
+      - /app/bin/barband
+      - --db.host=db
+    ports:
+      - 50051:50051

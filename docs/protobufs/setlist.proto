@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option go_package = "github.com/j4ng5y/barband/pkg/server/buffs";
+
+package barband.setlist;
+
+import "common.proto";
+
+service SetListService {
+  rpc CreateSetList (CreateSetListRequest) returns (SetList) {};
+  rpc ReadSetList (ReadSetListRequest) returns (SetList) {};
+  rpc UpdateSetList (UpdateSetListRequest) returns (SetList) {};
+  rpc DeleteSetList (DeleteSetListRequest) returns (common.Empty) {};
+}
+
+message SetList {
+  string band_id = 1;
+  string id = 2;
+  string name = 3;
+}
+
+message CreateSetListRequest {
+  string band_id = 1;
+  string name = 2;
+}
+
+message ReadSetListRequest {
+  string id = 1;
+}
+
+message UpdateSetListRequest {
+  string id = 1;
+  string name = 2;
+}
+
+message DeleteSetListRequest {
+  string id = 1;
+}
