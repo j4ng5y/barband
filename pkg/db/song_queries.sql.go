@@ -16,7 +16,7 @@ const addLyric = `-- name: AddLyric :one
 INSERT INTO lyrics (
     song_id, id, part, lyrics, created_at
 ) VALUES (
-    $1, $2, $3, $3, current_timestamp
+    $1, $2, $3, $4, current_timestamp
 ) RETURNING song_id, id, part, lyrics
 `
 
@@ -24,10 +24,16 @@ type AddLyricParams struct {
 	SongID uuid.NullUUID
 	ID     uuid.UUID
 	Part   sql.NullString
+	Lyrics sql.NullString
 }
 
 func (q *Queries) AddLyric(ctx context.Context, arg AddLyricParams) (Lyric, error) {
-	row := q.db.QueryRowContext(ctx, addLyric, arg.SongID, arg.ID, arg.Part)
+	row := q.db.QueryRowContext(ctx, addLyric,
+		arg.SongID,
+		arg.ID,
+		arg.Part,
+		arg.Lyrics,
+	)
 	var i Lyric
 	err := row.Scan(
 		&i.SongID,
@@ -42,7 +48,7 @@ const addTab = `-- name: AddTab :one
 INSERT INTO tabs (
     song_id, id, part, tabs, created_at
 ) VALUES (
-     $1, $2, $3, $3, current_timestamp
+     $1, $2, $3, $4, current_timestamp
  ) RETURNING song_id, id, part, tabs
 `
 
@@ -50,10 +56,16 @@ type AddTabParams struct {
 	SongID uuid.NullUUID
 	ID     uuid.UUID
 	Part   sql.NullString
+	Tabs   sql.NullString
 }
 
 func (q *Queries) AddTab(ctx context.Context, arg AddTabParams) (Tab, error) {
-	row := q.db.QueryRowContext(ctx, addTab, arg.SongID, arg.ID, arg.Part)
+	row := q.db.QueryRowContext(ctx, addTab,
+		arg.SongID,
+		arg.ID,
+		arg.Part,
+		arg.Tabs,
+	)
 	var i Tab
 	err := row.Scan(
 		&i.SongID,

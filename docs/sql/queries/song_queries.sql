@@ -42,12 +42,12 @@ WHERE id = $1;
 INSERT INTO lyrics (
     song_id, id, part, lyrics, created_at
 ) VALUES (
-    $1, $2, $3, $3, current_timestamp
+    $1, $2, $3, $4, current_timestamp
 ) RETURNING *;
 
 -- name: AddTab :one
 INSERT INTO tabs (
     song_id, id, part, tabs, created_at
 ) VALUES (
-     $1, $2, $3, $3, current_timestamp
+     $1, $2, $3, $4, current_timestamp
  ) RETURNING *;
