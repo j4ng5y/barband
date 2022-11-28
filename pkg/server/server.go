@@ -59,11 +59,20 @@ func New(cfg *viper.Viper) (*Server, error) {
 
 	if err := m.Up(); err != nil {
 		if err == migrate.ErrNoChange {
+
 			log.Info().Msg("no migrations to run")
 		} else {
+			if err := m.Down(); err != nil {
+				log.Fatal().Err(err).Send()
+			}
 			return nil, err
 		}
 	}
+	v, d, err := m.Version()
+	if err != nil {
+		log.Error().Err(err).Send()
+	}
+	log.Info().Uint("version", v).Bool("dirty", d).Msg("migrations successfully ran")
 
 	s := &Server{
 		cfg: cfg,

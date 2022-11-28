@@ -67,6 +67,9 @@ database barband {
 		id => UUID
 		part => VARCHAR(60)
 		lyrics => TEXT
+		created_at => TIMESTAMP
+		updated_at => TIMESTAMP
+		deleted_at => TIMESTAMP
 	}
 
 	map tabs {
@@ -74,13 +77,16 @@ database barband {
 		id => UUID
 		part => VARCHAR(60)
 		tabs => TEXT
+		created_at => TIMESTAMP
+		updated_at => TIMESTAMP
+		deleted_at => TIMESTAMP
 	}
 
-	bands::id --> band_members::band_id
-	bands::id --> set_lists::band_id
-	set_lists::id --> sets::set_list_id
-	sets::id --> songs::set_id
-	songs::id --> lyrics::song_id
-	songs::id --> tabs::song_id
+	bands::id <--> band_members::band_id
+	bands::id <--> set_lists::band_id
+	set_lists::id <--> sets::set_list_id
+	sets::id <--> songs::set_id
+	songs::id <--> lyrics::song_id
+	songs::id <--> tabs::song_id
 }
 @enduml
